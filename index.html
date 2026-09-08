@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="sq">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -15,24 +15,17 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    /* Cream palette */
     --cream: #f1e8d3;
     --cream-warm: #e8dcc0;
     --cream-light: #f7f0db;
     --paper: #faf3e1;
-
-    /* Forest green palette */
     --green: #2d3a2e;
     --green-dark: #1f2c20;
     --green-mid: #3d4d3e;
     --green-deep: #15201a;
-
-    /* Ink */
     --ink: #1f2820;
     --ink-soft: #5a6055;
     --ink-muted: #80847a;
-
-    /* Decorative */
     --gold: #b89358;
     --rule: rgba(45, 58, 46, 0.18);
   }
@@ -49,394 +42,156 @@
     font-weight: 400;
   }
 
-  body.curtain-closed {
-    overflow: hidden;
-    height: 100vh;
-  }
-
+  body.curtain-closed { overflow: hidden; height: 100vh; }
   img { max-width: 100%; display: block; }
 
   /* ============ CURTAIN ============ */
-  .curtain-stage {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    pointer-events: auto;
-    overflow: hidden;
-  }
-
+  .curtain-stage { position: fixed; inset: 0; z-index: 1000; pointer-events: auto; overflow: hidden; }
   .curtain-stage.open { pointer-events: none; }
 
   .valance {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background:
-      linear-gradient(180deg,
-        var(--green-deep) 0%,
-        var(--green-dark) 40%,
-        var(--green) 100%);
-    z-index: 5;
-    box-shadow: 0 6px 28px rgba(0,0,0,0.45);
-    pointer-events: none;
+    position: absolute; top: 0; left: 0; right: 0; height: 60px;
+    background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-dark) 40%, var(--green) 100%);
+    z-index: 5; box-shadow: 0 6px 28px rgba(0,0,0,0.45); pointer-events: none;
     transition: transform 1.6s cubic-bezier(0.7, 0, 0.25, 1);
   }
   .valance::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    height: 14px;
-    background:
-      radial-gradient(circle at 18px 0, var(--green) 7px, transparent 8px) repeat-x;
-    background-size: 36px 14px;
-    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.35));
+    content: ''; position: absolute; bottom: -10px; left: 0; right: 0; height: 14px;
+    background: radial-gradient(circle at 18px 0, var(--green) 7px, transparent 8px) repeat-x;
+    background-size: 36px 14px; filter: drop-shadow(0 3px 4px rgba(0,0,0,0.35));
   }
   .valance::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 22px,
-      rgba(0,0,0,0.25) 23px,
-      rgba(0,0,0,0.30) 24px,
-      transparent 26px,
-      transparent 44px
-    );
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 22px, rgba(0,0,0,0.25) 23px, rgba(0,0,0,0.30) 24px, transparent 26px, transparent 44px);
   }
-
   .curtain-stage.open .valance { transform: translateY(-100%); }
 
   .curtain {
-    position: absolute;
-    top: 0;
-    width: 52%;
-    height: 100vh;
-    pointer-events: auto;
-    cursor: pointer;
+    position: absolute; top: 0; width: 52%; height: 100vh;
+    pointer-events: auto; cursor: pointer;
     transition: transform 2.2s cubic-bezier(0.7, 0, 0.25, 1);
     will-change: transform;
   }
-
   .curtain-left {
     left: 0;
-    background:
-      linear-gradient(95deg,
-        var(--green-deep) 0%,
-        var(--green-dark) 12%,
-        var(--green) 28%,
-        var(--green-mid) 42%,
-        var(--green) 56%,
-        var(--green-mid) 70%,
-        var(--green) 82%,
-        var(--green-dark) 94%,
-        var(--green-deep) 100%);
+    background: linear-gradient(95deg, var(--green-deep) 0%, var(--green-dark) 12%, var(--green) 28%, var(--green-mid) 42%, var(--green) 56%, var(--green-mid) 70%, var(--green) 82%, var(--green-dark) 94%, var(--green-deep) 100%);
     box-shadow: inset -30px 0 60px rgba(0,0,0,0.55);
   }
-
   .curtain-right {
     right: 0;
-    background:
-      linear-gradient(265deg,
-        var(--green-deep) 0%,
-        var(--green-dark) 12%,
-        var(--green) 28%,
-        var(--green-mid) 42%,
-        var(--green) 56%,
-        var(--green-mid) 70%,
-        var(--green) 82%,
-        var(--green-dark) 94%,
-        var(--green-deep) 100%);
+    background: linear-gradient(265deg, var(--green-deep) 0%, var(--green-dark) 12%, var(--green) 28%, var(--green-mid) 42%, var(--green) 56%, var(--green-mid) 70%, var(--green) 82%, var(--green-dark) 94%, var(--green-deep) 100%);
     box-shadow: inset 30px 0 60px rgba(0,0,0,0.55);
   }
-
-  /* Pleats */
   .curtain::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 14px,
-      rgba(0,0,0,0.25) 15px,
-      rgba(0,0,0,0.32) 16px,
-      rgba(255,255,255,0.04) 18px,
-      transparent 20px,
-      transparent 34px
-    );
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 14px, rgba(0,0,0,0.25) 15px, rgba(0,0,0,0.32) 16px, rgba(255,255,255,0.04) 18px, transparent 20px, transparent 34px);
     pointer-events: none;
   }
-
-  /* Diagonal drape */
   .curtain::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      repeating-linear-gradient(
-        72deg,
-        transparent 0,
-        transparent 38px,
-        rgba(255,255,255,0.04) 39px,
-        rgba(255,255,255,0.07) 40px,
-        transparent 42px,
-        transparent 80px
-      );
-    pointer-events: none;
-    mix-blend-mode: overlay;
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(72deg, transparent 0, transparent 38px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.07) 40px, transparent 42px, transparent 80px);
+    pointer-events: none; mix-blend-mode: overlay;
   }
   .curtain-right::after {
-    background:
-      repeating-linear-gradient(
-        108deg,
-        transparent 0,
-        transparent 38px,
-        rgba(255,255,255,0.04) 39px,
-        rgba(255,255,255,0.07) 40px,
-        transparent 42px,
-        transparent 80px
-      );
+    background: repeating-linear-gradient(108deg, transparent 0, transparent 38px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.07) 40px, transparent 42px, transparent 80px);
   }
-
   .curtain-stage.open .curtain-left  { transform: translateX(-105%); }
   .curtain-stage.open .curtain-right { transform: translateX(105%); }
 
   .curtain-hint {
-    position: absolute;
-    bottom: 12vh;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute; bottom: 12vh; left: 50%; transform: translateX(-50%);
     color: rgba(241, 232, 211, 0.92);
-    font-family: 'Allura', cursive;
-    font-size: 2.2rem;
-    z-index: 10;
-    pointer-events: none;
-    text-align: center;
+    font-family: 'Allura', cursive; font-size: 2.2rem;
+    z-index: 10; pointer-events: none; text-align: center;
     text-shadow: 0 2px 16px rgba(0,0,0,0.7);
     animation: gentle-pulse 2.8s ease-in-out infinite;
   }
   .curtain-hint .arrow {
-    display: block;
-    margin-top: 6px;
+    display: block; margin-top: 6px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
+    font-size: 1.2rem; letter-spacing: 0.4em; text-transform: uppercase;
   }
-
   @keyframes gentle-pulse {
     0%, 100% { opacity: 0.7; transform: translateX(-50%) translateY(0); }
     50% { opacity: 1; transform: translateX(-50%) translateY(-4px); }
   }
-
   .curtain-stage.open .curtain-hint { opacity: 0; transition: opacity 0.4s; }
 
   /* ============ TYPOGRAPHY ============ */
-  .display {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -0.005em;
-  }
-
-  .script {
-    font-family: 'Allura', cursive;
-    font-weight: 400;
-  }
-
-  .pinyon {
-    font-family: 'Pinyon Script', cursive;
-    font-weight: 400;
-  }
-
+  .display { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.02; letter-spacing: -0.005em; }
+  .script { font-family: 'Allura', cursive; font-weight: 400; }
+  .pinyon { font-family: 'Pinyon Script', cursive; font-weight: 400; }
   .smallcaps {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.4em;
-    font-size: 0.78rem;
+    font-family: 'Cormorant Garamond', serif; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.4em; font-size: 0.78rem;
   }
 
   /* ============ LAYOUT ============ */
   main { position: relative; z-index: 1; }
-
   .section {
-    padding: 12vh 7vw;
-    position: relative;
-    opacity: 0;
-    transform: translateY(28px);
+    padding: 12vh 7vw; position: relative;
+    opacity: 0; transform: translateY(28px);
     transition: opacity 1.2s ease, transform 1.2s ease;
   }
   .section.visible { opacity: 1; transform: translateY(0); }
-
-  .section-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
+  .section-inner { max-width: 720px; margin: 0 auto; text-align: center; }
   .section.bg-cream { background: var(--cream); }
   .section.bg-paper { background: var(--paper); }
   .section.bg-cream-warm { background: var(--cream-warm); }
-  .section.bg-green {
-    background: var(--green-dark);
-    color: var(--cream-light);
-  }
-  .section.bg-green .smallcaps { color: var(--cream-warm); }
-
-  /* Stripe transition between sections */
-  .stripes {
-    height: 80px;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        var(--green-dark) 0,
-        var(--green-dark) 14px,
-        var(--cream) 14px,
-        var(--cream) 28px
-      );
-    position: relative;
-  }
-  .stripes-cream-to-green {
-    background: linear-gradient(180deg, var(--cream) 50%, var(--green-dark) 50%);
-  }
-
-  /* Vertical green stripes accent (used in some sections) */
-  .stripe-band {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 22%;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 18px,
-        var(--green-dark) 18px,
-        var(--green-dark) 26px
-      );
-    opacity: 0.92;
-    pointer-events: none;
-  }
 
   /* ============ HERO ============ */
   .hero {
-    min-height: 100vh;
-    background: var(--cream);
+    min-height: 100vh; background: var(--cream);
     padding: 8vh 6vw 10vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; position: relative;
   }
-
   .hero-photo {
-    width: min(78vw, 380px);
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    background: #ddd;
+    width: min(78vw, 380px); aspect-ratio: 3/4;
+    overflow: hidden; background: #ddd;
     margin-bottom: 3.5rem;
     border: 1px solid rgba(45, 58, 46, 0.15);
     box-shadow: 0 22px 50px -20px rgba(45, 58, 46, 0.35);
     position: relative;
   }
-  .hero-photo::before, .hero-photo::after {
-    content: '';
-    position: absolute;
-    background: var(--cream);
-    z-index: 1;
-  }
   .hero-photo::before {
-    inset: 8px;
+    content: ''; position: absolute; inset: 8px;
     border: 1px solid rgba(45, 58, 46, 0.3);
-    background: transparent;
-    pointer-events: none;
+    background: transparent; pointer-events: none; z-index: 1;
   }
-  .hero-photo img {
-    width: 100%; height: 100%; object-fit: cover; filter: contrast(1.02);
-  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.02); }
 
   .hero-eyebrow {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--green);
-    font-size: clamp(1.1rem, 2.6vw, 1.4rem);
-    margin-bottom: 0.4rem;
-    letter-spacing: 0.02em;
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+    color: var(--green); font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+    margin-bottom: 0.4rem; letter-spacing: 0.02em;
   }
-
   .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: clamp(3.2rem, 11vw, 5.5rem);
-    line-height: 0.95;
-    color: var(--green-dark);
-    margin: 0.2rem 0 0.4rem;
-    letter-spacing: -0.01em;
+    font-family: 'Playfair Display', serif; font-weight: 800;
+    font-size: clamp(3.2rem, 11vw, 5.5rem); line-height: 0.95;
+    color: var(--green-dark); margin: 0.2rem 0 0.4rem; letter-spacing: -0.01em;
   }
-  .hero-title em {
-    font-style: italic;
-    font-weight: 700;
-    color: var(--green);
-  }
-
-  .hero-and {
-    font-family: 'Allura', cursive;
-    font-weight: 400;
-    font-size: clamp(3rem, 9vw, 4.2rem);
-    color: var(--green);
-    line-height: 1;
-    margin: 0.05em 0;
-  }
-
+  .hero-title em { font-style: italic; font-weight: 700; color: var(--green); }
   .hero-meta {
-    margin-top: 2.6rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--ink-soft);
+    margin-top: 2.6rem; font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 1.15rem; color: var(--ink-soft);
     letter-spacing: 0.04em;
   }
   .hero-meta .dot {
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    background: var(--green);
-    border-radius: 50%;
-    margin: 0 0.7em;
-    vertical-align: middle;
+    display: inline-block; width: 4px; height: 4px;
+    background: var(--green); border-radius: 50%;
+    margin: 0 0.7em; vertical-align: middle;
   }
+  .hero-rule { width: 60px; height: 1px; background: var(--green); margin: 1.4rem auto 0; }
 
-  .hero-rule {
-    width: 60px;
-    height: 1px;
-    background: var(--green);
-    margin: 1.4rem auto 0;
-  }
-
-  /* ============ TAGLINE BAND ============ */
+  /* ============ TAGLINE ============ */
   .tagline {
-    background: var(--green-dark);
-    color: var(--cream-light);
-    padding: 14vh 7vw;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: var(--green-dark); color: var(--cream-light);
+    padding: 14vh 7vw; text-align: center;
+    position: relative; overflow: hidden;
   }
   .tagline::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background:
       radial-gradient(2px 2px at 18% 28%, rgba(241, 232, 211, 0.5), transparent),
       radial-gradient(1.5px 1.5px at 72% 62%, rgba(241, 232, 211, 0.45), transparent),
@@ -448,473 +203,210 @@
     pointer-events: none;
   }
   .tagline-text {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    line-height: 1.4;
-    color: var(--cream-light);
-    position: relative;
-    z-index: 1;
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.4;
+    color: var(--cream-light); position: relative; z-index: 1;
   }
-  .tagline-orn {
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--gold);
-    margin: 0 1rem;
-    opacity: 0.6;
-  }
+  .tagline-orn { font-family: 'Cormorant Garamond', serif; color: var(--gold); margin: 0 1rem; opacity: 0.6; }
 
   /* ============ POEM ============ */
   .poem-section { background: var(--cream); }
   .poem-section .section-inner { max-width: 580px; }
-
   .poem-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(1.15rem, 2.4vw, 1.35rem);
-    line-height: 2;
-    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(1.15rem, 2.4vw, 1.35rem); line-height: 2; color: var(--ink);
   }
   .poem-text p { margin-bottom: 1.6rem; }
   .poem-text p:last-child { margin-bottom: 0; }
 
-  /* Decorative ornament */
   .ornament {
     display: flex; align-items: center; justify-content: center;
-    gap: 14px;
-    margin: 0 0 3rem;
+    gap: 14px; margin: 0 0 3rem;
   }
-  .ornament .line {
-    width: 70px; height: 1px;
-    background: var(--green);
-    opacity: 0.5;
-  }
-  .ornament .glyph {
-    color: var(--green);
-    font-family: 'Pinyon Script', cursive;
-    font-size: 1.6rem;
-    line-height: 1;
-  }
+  .ornament .line { width: 70px; height: 1px; background: var(--green); opacity: 0.5; }
+  .ornament .glyph { color: var(--green); font-family: 'Pinyon Script', cursive; font-size: 1.6rem; line-height: 1; }
 
   /* ============ SAVE THE DATE ============ */
-  .save-the-date {
-    background: var(--cream-warm);
-    padding: 14vh 6vw;
-    text-align: center;
-  }
+  .save-the-date { background: var(--cream-warm); padding: 14vh 6vw; text-align: center; }
   .stamp {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid var(--green);
-    padding: 3rem 2rem 2.5rem;
-    max-width: 460px;
-    background: var(--cream-light);
+    display: inline-flex; flex-direction: column; align-items: center;
+    border: 1px solid var(--green); padding: 3rem 2rem 2.5rem;
+    max-width: 460px; background: var(--cream-light);
     box-shadow: 0 24px 50px -28px rgba(45, 58, 46, 0.4);
     position: relative;
   }
   .stamp::before, .stamp::after {
-    content: '';
-    position: absolute;
-    width: 12px; height: 12px;
+    content: ''; position: absolute; width: 12px; height: 12px;
     border: 1px solid var(--green);
   }
   .stamp::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
   .stamp::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
-
   .stamp-eyebrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    color: var(--green);
-    font-size: 1.05rem;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.4rem;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: var(--green); font-size: 1.05rem; letter-spacing: 0.06em; margin-bottom: 0.4rem;
   }
   .stamp .big-date {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(2.6rem, 8vw, 3.6rem);
-    color: var(--green-dark);
-    line-height: 1;
-    letter-spacing: 0.02em;
-    margin: 0.6rem 0 1rem;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: clamp(2.6rem, 8vw, 3.6rem); color: var(--green-dark);
+    line-height: 1; letter-spacing: 0.02em; margin: 0.6rem 0 1rem;
   }
-  .stamp .big-date .sep {
-    color: var(--gold);
-    font-weight: 400;
-    margin: 0 0.06em;
-  }
-  .stamp .stamp-rule {
-    width: 50px; height: 1px;
-    background: var(--green);
-    margin: 0.4rem 0 1rem;
-    opacity: 0.5;
-  }
+  .stamp .big-date .sep { color: var(--gold); font-weight: 400; margin: 0 0.06em; }
+  .stamp .stamp-rule { width: 50px; height: 1px; background: var(--green); margin: 0.4rem 0 1rem; opacity: 0.5; }
   .stamp .stamp-venue {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.4rem;
-    color: var(--green-dark);
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500;
+    font-size: 1.4rem; color: var(--green-dark);
   }
   .stamp .stamp-place {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    margin-top: 0.3rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;
+    color: var(--ink-soft); margin-top: 0.3rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
   }
 
-  /* ============ VENUE PHOTOS ============ */
-  .venue-feature {
-    padding: 0;
-    background: var(--cream);
-  }
-  .venue-feature .photo-wrap {
-    width: 100%;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    position: relative;
-  }
-  .venue-feature .photo-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .venue-feature .photo-caption {
-    text-align: center;
-    padding: 4vh 7vw;
-    background: var(--cream);
-  }
+  /* ============ VENUE ============ */
+  .venue-feature { padding: 0; background: var(--cream); }
+  .venue-feature .photo-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; }
+  .venue-feature .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .venue-feature .photo-caption { text-align: center; padding: 4vh 7vw; background: var(--cream); }
   .photo-caption .smallcaps { color: var(--green); }
   .photo-caption .photo-title {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    color: var(--green-dark);
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500;
+    font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--green-dark);
     margin: 0.6rem 0 0.4rem;
   }
-  .photo-caption .photo-sub {
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--ink-soft);
-    font-style: italic;
-    font-size: 1.05rem;
-  }
+  .photo-caption .photo-sub { font-family: 'Cormorant Garamond', serif; color: var(--ink-soft); font-style: italic; font-size: 1.05rem; }
 
-  /* ============ TIMELINE / THE DAY ============ */
-  .timeline-section {
-    background: var(--cream);
-    padding: 14vh 6vw 12vh;
-    text-align: center;
-    position: relative;
-  }
+  /* ============ TIMELINE ============ */
+  .timeline-section { background: var(--cream); padding: 14vh 6vw 12vh; text-align: center; position: relative; }
   .timeline-section .section-inner { max-width: 780px; }
-
   .timeline-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(2.4rem, 6vw, 3.2rem);
-    color: var(--green-dark);
-    margin-bottom: 0.3rem;
-    letter-spacing: 0.01em;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.2rem); color: var(--green-dark);
+    margin-bottom: 0.3rem; letter-spacing: 0.01em;
   }
   .timeline-sub {
     font-family: 'Pinyon Script', cursive;
-    font-size: clamp(1.4rem, 3.5vw, 1.8rem);
-    color: var(--green);
-    margin-bottom: 3rem;
+    font-size: clamp(1.4rem, 3.5vw, 1.8rem); color: var(--green); margin-bottom: 3rem;
   }
-
   .timeline-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 2.5rem 1.2rem;
-    margin-top: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 2.5rem 1.2rem; margin-top: 2rem;
   }
-
-  .timeline-item {
-    text-align: center;
-    padding: 0 0.4rem;
-  }
-  .timeline-icon {
-    width: 64px; height: 64px;
-    margin: 0 auto 1rem;
-    color: var(--green-dark);
-  }
+  .timeline-item { text-align: center; padding: 0 0.4rem; }
+  .timeline-icon { width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--green-dark); }
   .timeline-icon svg { width: 100%; height: 100%; }
   .timeline-time {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--green-dark);
-    margin-bottom: 0.3rem;
-    letter-spacing: 0.04em;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 1.1rem; color: var(--green-dark);
+    margin-bottom: 0.3rem; letter-spacing: 0.04em;
   }
   .timeline-desc {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 1.25rem;
-    color: var(--green);
-    line-height: 1.2;
-    min-height: 2.6em;
+    font-family: 'Pinyon Script', cursive; font-size: 1.25rem;
+    color: var(--green); line-height: 1.2; min-height: 2.6em;
   }
-
   .timeline-stripe {
-    height: 26px;
-    margin-top: 4rem;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 16px,
-        var(--green-dark) 16px,
-        var(--green-dark) 22px
-      );
+    height: 26px; margin-top: 4rem;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 16px, var(--green-dark) 16px, var(--green-dark) 22px);
     opacity: 0.85;
   }
 
   /* ============ RSVP ============ */
   .rsvp-section {
-    background: var(--green-dark);
-    color: var(--cream-light);
-    padding: 14vh 6vw;
-    position: relative;
-    overflow: hidden;
+    background: var(--green-dark); color: var(--cream-light);
+    padding: 14vh 6vw; position: relative; overflow: hidden;
   }
-  .rsvp-section .section-inner {
-    max-width: 540px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
+  .rsvp-section .section-inner { max-width: 540px; text-align: center; position: relative; z-index: 1; }
   .rsvp-section .vertical-stripes {
-    position: absolute;
-    top: 0; bottom: 0;
-    right: 0;
-    width: 28%;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 12px,
-        var(--cream-warm) 12px,
-        var(--cream-warm) 16px
-      );
-    opacity: 0.55;
-    pointer-events: none;
+    position: absolute; top: 0; bottom: 0; right: 0; width: 28%;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 12px, var(--cream-warm) 12px, var(--cream-warm) 16px);
+    opacity: 0.55; pointer-events: none;
   }
   .rsvp-section .vertical-stripes-l {
-    position: absolute;
-    top: 0; bottom: 0; left: 0;
-    width: 8%;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 12px,
-        var(--cream-warm) 12px,
-        var(--cream-warm) 16px
-      );
-    opacity: 0.3;
-    pointer-events: none;
+    position: absolute; top: 0; bottom: 0; left: 0; width: 8%;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 12px, var(--cream-warm) 12px, var(--cream-warm) 16px);
+    opacity: 0.3; pointer-events: none;
   }
-
   .rsvp-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: clamp(2.6rem, 7vw, 3.6rem);
-    color: var(--cream-light);
-    letter-spacing: 0.02em;
-    margin-bottom: 0.4rem;
+    font-family: 'Playfair Display', serif; font-weight: 800;
+    font-size: clamp(2.6rem, 7vw, 3.6rem); color: var(--cream-light);
+    letter-spacing: 0.02em; margin-bottom: 0.4rem;
   }
-  .rsvp-sub {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 1.6rem;
-    color: var(--cream-warm);
-    margin-bottom: 2rem;
-  }
+  .rsvp-sub { font-family: 'Pinyon Script', cursive; font-size: 1.6rem; color: var(--cream-warm); margin-bottom: 2rem; }
   .rsvp-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    line-height: 1.85;
-    color: var(--cream-light);
-    margin-bottom: 1.4rem;
-  }
-  .rsvp-deadline {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--cream-warm);
-    margin: 1.4rem 0;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85;
+    color: var(--cream-light); margin-bottom: 1.4rem;
   }
   .rsvp-list {
-    list-style: none;
-    margin: 1.6rem 0;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 2;
+    list-style: none; margin: 1.6rem 0;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.1rem; line-height: 2;
   }
-  .rsvp-list li::before {
-    content: '— ';
-    color: var(--cream-warm);
-    margin-right: 0.4em;
-  }
-  .rsvp-contact {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    margin-top: 1.6rem;
-    word-break: break-all;
-  }
+  .rsvp-list li::before { content: '— '; color: var(--cream-warm); margin-right: 0.4em; }
+  .rsvp-contact { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-top: 1.6rem; word-break: break-all; }
   .rsvp-contact a {
-    color: var(--cream-light);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(241, 232, 211, 0.4);
-    padding-bottom: 2px;
+    color: var(--cream-light); text-decoration: none;
+    border-bottom: 1px solid rgba(241, 232, 211, 0.4); padding-bottom: 2px;
   }
 
   /* ============ COUNTDOWN ============ */
-  .countdown-section {
-    background: var(--cream-warm);
-    padding: 12vh 6vw;
-    text-align: center;
-  }
+  .countdown-section { background: var(--cream-warm); padding: 12vh 6vw; text-align: center; }
   .countdown {
-    display: flex;
-    justify-content: center;
+    display: flex; justify-content: center;
     gap: clamp(0.8rem, 4vw, 2.4rem);
-    margin: 2.4rem auto 0;
-    flex-wrap: wrap;
-    max-width: 600px;
+    margin: 2.4rem auto 0; flex-wrap: wrap; max-width: 600px;
   }
   .cd-unit {
-    text-align: center;
-    min-width: 70px;
-    padding: 1rem 0.4rem;
-    border-top: 1px solid var(--green);
-    border-bottom: 1px solid var(--green);
+    text-align: center; min-width: 70px; padding: 1rem 0.4rem;
+    border-top: 1px solid var(--green); border-bottom: 1px solid var(--green);
   }
   .cd-num {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 5.5vw, 2.6rem);
-    color: var(--green-dark);
-    line-height: 1;
-    display: block;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 2.6rem); color: var(--green-dark);
+    line-height: 1; display: block;
   }
   .cd-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    margin-top: 0.6em;
-    display: block;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 0.9rem; color: var(--ink-soft); margin-top: 0.6em;
+    display: block; letter-spacing: 0.16em; text-transform: uppercase;
   }
 
-  /* ============ GUIDE ============ */
-  .guide-intro {
-    background: var(--cream);
-    padding: 14vh 7vw 6vh;
+  /* ============ ABOUT KAZERMA ============ */
+  .about-block { background: var(--paper); padding: 12vh 7vw; text-align: left; }
+  .about-block .section-inner { max-width: 600px; text-align: left; }
+  .about-block .smallcaps { color: var(--green); display: block; text-align: center; margin-bottom: 0.6rem; }
+  .about-block .about-h {
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500;
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem); color: var(--green-dark);
+    text-align: center; margin-bottom: 1.8rem; line-height: 1.2;
+  }
+  .about-block p {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.08rem;
+    line-height: 1.8; color: var(--ink-soft); margin-bottom: 1rem;
     text-align: center;
   }
-  .guide-intro .section-inner { max-width: 600px; }
 
-  .guide-intro-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: clamp(2.4rem, 7vw, 3.6rem);
-    color: var(--green-dark);
-    line-height: 1.05;
-    margin-bottom: 0.6rem;
-    letter-spacing: 0.01em;
+  /* ============ DRESSCODE ============ */
+  .dresscode-block { background: var(--cream); padding: 12vh 7vw; text-align: center; }
+  .dresscode-block .section-inner { max-width: 600px; }
+  .dresscode-block .smallcaps { color: var(--green); }
+  .dresscode-block h3 {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 2.8rem); color: var(--green-dark);
+    margin: 0.6rem 0 1rem;
   }
-  .guide-intro-script {
-    font-family: 'Pinyon Script', cursive;
-    font-size: clamp(1.6rem, 4vw, 2rem);
-    color: var(--green);
-    margin-bottom: 2rem;
-    line-height: 1;
-  }
-  .guide-intro p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: var(--ink-soft);
-    font-style: italic;
-  }
-
-  .guide-block {
-    background: var(--cream);
-    padding: 8vh 7vw;
-    text-align: left;
-  }
-  .guide-block .section-inner {
-    max-width: 600px;
-    text-align: left;
-  }
-  .guide-block.bg-paper { background: var(--paper); }
-  .guide-block .smallcaps { color: var(--green); display: block; text-align: center; margin-bottom: 0.6rem; }
-  .guide-block .guide-h {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
-    color: var(--green-dark);
-    text-align: center;
-    margin-bottom: 1.8rem;
-    line-height: 1.2;
-  }
-  .guide-block p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.08rem;
-    line-height: 1.8;
-    color: var(--ink-soft);
-    margin-bottom: 1rem;
-  }
-  .guide-block strong {
-    font-weight: 600;
-    font-style: italic;
-    color: var(--green-dark);
-  }
-
-  .info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.85em 0;
-    border-bottom: 1px solid var(--rule);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    gap: 1rem;
-  }
-  .info-row:last-child { border-bottom: none; }
-  .info-row .label {
-    color: var(--ink-soft);
-    font-style: italic;
-    letter-spacing: 0.02em;
-  }
-  .info-row .value {
-    color: var(--green-dark);
-    text-align: right;
-    font-weight: 500;
+  .dresscode-block p {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--ink-soft); max-width: 460px;
+    margin: 0 auto; line-height: 1.7;
   }
 
   /* ============ CLOSING ============ */
   .closing {
-    background: var(--green-dark);
-    color: var(--cream-light);
-    padding: 14vh 6vw 8vh;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: var(--green-dark); color: var(--cream-light);
+    padding: 14vh 6vw 8vh; text-align: center;
+    position: relative; overflow: hidden;
   }
   .closing::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background:
       radial-gradient(2px 2px at 20% 30%, rgba(241, 232, 211, 0.5), transparent),
       radial-gradient(1.5px 1.5px at 80% 70%, rgba(241, 232, 211, 0.45), transparent),
@@ -928,142 +420,77 @@
   .closing .section-inner { position: relative; z-index: 1; }
   .closing-script {
     font-family: 'Allura', cursive;
-    font-size: clamp(2.2rem, 6vw, 3rem);
-    color: var(--cream-warm);
-    line-height: 1;
-    margin-bottom: 0.6rem;
+    font-size: clamp(2.2rem, 6vw, 3rem); color: var(--cream-warm);
+    line-height: 1; margin-bottom: 0.6rem;
   }
   .closing-names {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(2.6rem, 8vw, 3.6rem);
-    color: var(--cream-light);
-    line-height: 1;
-    letter-spacing: 0.01em;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: clamp(2.6rem, 8vw, 3.6rem); color: var(--cream-light);
+    line-height: 1; letter-spacing: 0.01em;
   }
-  .closing-rule {
-    width: 80px; height: 1px;
-    background: var(--cream-warm);
-    margin: 2rem auto 0;
-    opacity: 0.5;
-  }
-
-  /* ============ MOBILE ============ */
-  @media (max-width: 480px) {
-    body { font-size: 16px; }
-    .section { padding: 9vh 7vw; }
-    .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 2.4rem 1rem; }
-    .info-row { font-size: 1rem; }
-    .stamp { padding: 2.4rem 1.2rem 2rem; }
-  }
-
-  @media (max-width: 380px) {
-    .timeline-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  .closing-rule { width: 80px; height: 1px; background: var(--cream-warm); margin: 2rem auto 0; opacity: 0.5; }
 
   /* ============ RING SECTION ============ */
-  .ring-section {
-    background: var(--cream);
-    padding: 8vh 7vw 10vh;
-    text-align: center;
-  }
+  .ring-section { background: var(--cream); padding: 8vh 7vw 10vh; text-align: center; }
   .ring-photo {
-    width: min(70vw, 320px);
-    aspect-ratio: 3/4;
-    margin: 0 auto 1.6rem;
-    overflow: hidden;
+    width: min(70vw, 320px); aspect-ratio: 3/4;
+    margin: 0 auto 1.6rem; overflow: hidden;
     border: 1px solid rgba(45, 58, 46, 0.15);
     box-shadow: 0 22px 50px -22px rgba(45, 58, 46, 0.45);
     background: #ddd;
   }
-  .ring-photo img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: sepia(0.08) contrast(1.02);
-  }
-  .ring-caption {
-    margin-top: 1.4rem;
-  }
+  .ring-photo img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.08) contrast(1.02); }
+  .ring-caption { margin-top: 1.4rem; }
   .ring-caption .smallcaps {
-    color: var(--green);
-    font-style: italic;
-    text-transform: none;
-    letter-spacing: 0.18em;
-    font-size: 0.95rem;
+    color: var(--green); font-style: italic;
+    text-transform: none; letter-spacing: 0.18em; font-size: 0.95rem;
   }
-
-  /* ============ PRE-DINNER NOTE ============ */
-  .pre-dinner-note {
-    margin-top: 2.4rem;
-    padding: 1.6rem 1.4rem;
-    background: var(--cream-warm);
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    position: relative;
-  }
-  .pre-dinner-note::before,
-  .pre-dinner-note::after {
-    content: '';
-    position: absolute;
-    width: 8px; height: 8px;
-    border: 1px solid var(--green);
-    opacity: 0.55;
-  }
-  .pre-dinner-note::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
-  .pre-dinner-note::after  { bottom: 6px; right: 6px; border-left: none; border-top: none; }
 
   /* ============ MUTE BUTTON ============ */
   .mute-btn {
-    position: fixed;
-    bottom: 22px;
-    right: 22px;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: rgba(31, 44, 32, 0.82);
-    color: var(--cream-light);
-    border: 1px solid rgba(241, 232, 211, 0.18);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    opacity: 0;
-    pointer-events: none;
+    position: fixed; bottom: 22px; right: 22px;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(31, 44, 32, 0.82); color: var(--cream-light);
+    border: 1px solid rgba(241, 232, 211, 0.18); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; opacity: 0; pointer-events: none;
     transform: translateY(16px);
     transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s, background 0.2s;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
   }
-  .mute-btn.visible {
-    opacity: 0.88;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+  .mute-btn.visible { opacity: 0.88; pointer-events: auto; transform: translateY(0); }
   .mute-btn:hover { opacity: 1; background: rgba(31, 44, 32, 1); }
   .mute-btn svg { width: 20px; height: 20px; }
   .mute-btn .icon-muted { display: none; }
   .mute-btn.is-muted .icon-on { display: none; }
   .mute-btn.is-muted .icon-muted { display: block; }
 
-  /* Reduced motion */
+  /* ============ MOBILE ============ */
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    .section { padding: 9vh 7vw; }
+    .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 2.4rem 1rem; }
+    .stamp { padding: 2.4rem 1.2rem 2rem; }
+  }
+  @media (max-width: 380px) {
+    .timeline-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.5s !important;
-    }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.5s !important; }
   }
 </style>
 </head>
 <body class="curtain-closed">
 
-<!-- ============ BACKGROUND MUSIC ============ -->
+<!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ============ MUTE BUTTON ============ -->
-<button id="muteBtn" class="mute-btn" type="button" aria-label="Slå lyd til eller fra">
+<!-- MUTE BUTTON -->
+<button id="muteBtn" class="mute-btn" type="button" aria-label="Aktivo ose çaktivizo zërin">
   <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M11 5 L6 9 H3 V15 H6 L11 19 V5 Z"/>
     <path d="M15.5 8.5 Q17.5 12 15.5 15.5"/>
@@ -1075,49 +502,48 @@
   </svg>
 </button>
 
-<!-- ============ CURTAIN OVERLAY ============ -->
-<div class="curtain-stage" id="curtainStage" role="button" tabindex="0" aria-label="Tryk for at åbne invitationen">
+<!-- CURTAIN OVERLAY -->
+<div class="curtain-stage" id="curtainStage" role="button" tabindex="0" aria-label="Shtypni për të hapur ftesën">
   <div class="valance"></div>
   <div class="curtain curtain-left"></div>
   <div class="curtain curtain-right"></div>
   <div class="curtain-hint">
-    Tryk for at åbne
+    Shtypni për të hapur
     <span class="arrow">▾</span>
   </div>
 </div>
 
-<!-- ============ MAIN CONTENT ============ -->
 <main>
 
   <!-- HERO -->
   <section class="hero" data-reveal>
     <div class="hero-photo">
-      <img src="images/couple.jpg" alt="Sascha og Klodian">
+      <img src="images/couple.jpg" alt="Sascha dhe Klodian">
     </div>
 
     <div class="hero-eyebrow"><span class="pinyon">Sascha &amp; Klodian</span></div>
-    <h1 class="hero-title">are getting<br><em>married</em></h1>
+    <h1 class="hero-title"><em>martohen</em></h1>
     <div class="hero-rule"></div>
     <div class="hero-meta">
-      10 · 10 · 2026 <span class="dot"></span> Tirana, Albanien
+      10 · 10 · 2026 <span class="dot"></span> Tiranë, Shqipëri
     </div>
   </section>
 
-  <!-- TAGLINE BAND -->
+  <!-- TAGLINE -->
   <section class="tagline" data-reveal>
     <div class="section-inner">
       <p class="tagline-text">
-        En aften i historiske rammer<br>
+        Një mbrëmje në një ambient historik,<br>
         <span class="tagline-orn">✦</span>
       </p>
       <p class="tagline-text">
-        under glas og stjerner.
+        nën xham dhe nën yje.
       </p>
     </div>
   </section>
 
   <!-- POEM -->
-  <section class="poem-section section bg-cream" data-reveal>
+  <section class="poem-section section" data-reveal>
     <div class="section-inner">
       <div class="ornament" aria-hidden="true">
         <span class="line"></span>
@@ -1127,23 +553,32 @@
 
       <div class="poem-text">
         <p>
-          For tre år siden,<br>
-          under den albanske sol,<br>
-          mødtes vi —
+          Tre vjet më parë,<br>
+          nën diellin shqiptar,<br>
+          u takuam —
         </p>
         <p>
-          og vi vidste, stille og sikkert,<br>
-          at det var kærlighed.
+          dhe e kuptuam, në heshtje<br>
+          dhe me siguri,<br>
+          se ishte dashuri.
         </p>
         <p>
-          Nu vender vi tilbage<br>
-          til det sted, hvor det hele begyndte,<br>
-          for at fejre kærligheden<br>
-          og begyndelsen på vores næste kapitel.
+          Tani po rikthehemi<br>
+          në vendin ku gjithçka filloi,<br>
+          për të festuar dashurinë<br>
+          dhe fillimin e kapitullit tonë të ri.
         </p>
         <p style="margin-top: 2rem; font-style: normal; font-family: 'Playfair Display', serif; font-weight: 500;">
-          Vi inviterer jer til at være en del af<br>
-          en intim bryllupsfejring i Tirana.
+          Duke qenë se kemi zgjedhur<br>
+          një ceremoni private,<br>
+          prania juaj ka një domethënie<br>
+          të veçantë për ne.
+        </p>
+        <p>
+          Me shumë dashuri kemi zgjedhur<br>
+          ta festojmë ditën tonë më të veçantë<br>
+          në një rreth të vogël e të ngrohtë,<br>
+          mes njerëzve më të afërt për ne.
         </p>
       </div>
     </div>
@@ -1152,10 +587,10 @@
   <!-- ENGAGEMENT RING -->
   <section class="ring-section section" data-reveal>
     <div class="ring-photo">
-      <img src="images/ring.jpg" alt="Forlovelsesring">
+      <img src="images/ring.jpg" alt="Unaza e fejesës">
     </div>
     <div class="ring-caption">
-      <span class="smallcaps">— Hun sagde ja —</span>
+      <span class="smallcaps">— Ajo tha po —</span>
     </div>
   </section>
 
@@ -1165,30 +600,30 @@
       <img src="images/brickbuilding.jpg" alt="Kazerma e Cerenit">
     </div>
     <div class="photo-caption">
-      <span class="smallcaps">The Venue</span>
+      <span class="smallcaps">Vendndodhja</span>
       <h3 class="photo-title">Kazerma e Cerenit</h3>
-      <p class="photo-sub">Tirana · Albanien</p>
+      <p class="photo-sub">Tiranë · Shqipëri</p>
     </div>
   </section>
 
-  <!-- SAVE THE DATE STAMP -->
+  <!-- SAVE THE DATE -->
   <section class="save-the-date section" data-reveal>
     <div class="stamp">
-      <div class="stamp-eyebrow">— Save the date —</div>
+      <div class="stamp-eyebrow">— Ruajeni datën —</div>
       <div class="big-date">10<span class="sep">·</span>10<span class="sep">·</span>2026</div>
       <div class="stamp-rule"></div>
-      <div class="stamp-venue">Lørdag</div>
-      <div class="stamp-place">Tirana, Albanien</div>
+      <div class="stamp-venue">E shtunë</div>
+      <div class="stamp-place">Tiranë, Shqipëri</div>
     </div>
   </section>
 
   <!-- COUNTDOWN -->
   <section class="countdown-section section" data-reveal>
     <div class="section-inner">
-      <span class="smallcaps" style="color: var(--green);">Tæller ned til dagen</span>
+      <span class="smallcaps" style="color: var(--green);">Duke numëruar ditët deri në ditën e madhe</span>
       <div class="countdown" id="countdown">
-        <div class="cd-unit"><span class="cd-num" id="cd-days">—</span><span class="cd-label">Dage</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-hours">—</span><span class="cd-label">Timer</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-days">—</span><span class="cd-label">Ditë</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">—</span><span class="cd-label">Orë</span></div>
         <div class="cd-unit"><span class="cd-num" id="cd-mins">—</span><span class="cd-label">Min.</span></div>
         <div class="cd-unit"><span class="cd-num" id="cd-secs">—</span><span class="cd-label">Sek.</span></div>
       </div>
@@ -1198,27 +633,26 @@
   <!-- VENUE FEATURE: GLASSHOUSE -->
   <section class="venue-feature section" data-reveal>
     <div class="photo-wrap">
-      <img src="images/glasshouse.jpg" alt="Glashuset på Kazerma">
+      <img src="images/glasshouse.jpg" alt="Shtëpia e Xhamit">
     </div>
     <div class="photo-caption">
-      <span class="smallcaps">Glashuset</span>
-      <h3 class="photo-title">Hvor middagen finder sted</h3>
-      <p class="photo-sub">Under glas, omgivet af Albaniens grønne bjerge</p>
+      <span class="smallcaps">Shtëpia e Xhamit</span>
+      <h3 class="photo-title">Ku do të zhvillohet darka</h3>
+      <p class="photo-sub">Nën xham, të rrethuar nga malet e gjelbra të Shqipërisë</p>
     </div>
   </section>
 
-  <!-- TIMELINE / THE DAY -->
+  <!-- TIMELINE -->
   <section class="timeline-section section" data-reveal>
     <div class="section-inner">
-      <span class="smallcaps" style="color: var(--green);">Bryllupsdagen</span>
-      <h2 class="timeline-title">The Day</h2>
-      <div class="timeline-sub">Lørdag, 10. oktober 2026</div>
+      <span class="smallcaps" style="color: var(--green);">Dita e Dasmës</span>
+      <h2 class="timeline-title">Dita</h2>
+      <div class="timeline-sub">E shtunë, 10 tetor 2026</div>
 
       <div class="timeline-grid">
 
         <div class="timeline-item">
           <div class="timeline-icon" aria-hidden="true">
-            <!-- Champagne flutes -->
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 12 L18 28 Q18 36 22 38 L22 52 M22 52 L18 54 M22 52 L26 54"/>
               <path d="M42 12 L46 28 Q46 36 42 38 L42 52 M42 52 L38 54 M42 52 L46 54"/>
@@ -1231,113 +665,75 @@
               <path d="M50 18 Q46 8 42 12" opacity="0.4"/>
             </svg>
           </div>
-          <div class="timeline-time">17.00</div>
-          <div class="timeline-desc">Reception<br>under åben himmel</div>
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-desc">Pritje në<br>ambient të hapur</div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-icon" aria-hidden="true">
-            <!-- Dancing couple -->
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Her -->
               <circle cx="22" cy="14" r="3.5"/>
               <path d="M22 18 L22 30 L18 46 L14 56"/>
               <path d="M22 30 L26 38 L34 36"/>
-              <!-- Him -->
               <circle cx="42" cy="12" r="3.5"/>
               <path d="M42 16 L42 32 L46 50 L50 56"/>
               <path d="M42 32 L38 38 L34 36"/>
-              <!-- Linked hands -->
               <path d="M30 26 L34 30" stroke-width="1"/>
-              <!-- Dress flow -->
               <path d="M14 56 Q18 52 22 56" opacity="0.4"/>
             </svg>
           </div>
-          <div class="timeline-time">18.30</div>
-          <div class="timeline-desc">Bryllupsmiddag<br>&amp; første dans</div>
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-desc">Darka e dasmës<br>&amp; kërcimi i parë</div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-icon" aria-hidden="true">
-            <!-- Mandolin / traditional instrument -->
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="24" cy="42" rx="14" ry="16"/>
-              <path d="M30 32 L48 14"/>
-              <path d="M48 14 L52 18 L54 16 L50 12 Z" fill="currentColor" fill-opacity="0.15"/>
-              <circle cx="24" cy="44" r="3"/>
-              <path d="M16 30 L16 56 M20 28 L20 58 M24 27 L24 58 M28 28 L28 56 M32 30 L32 54" stroke-width="0.5" opacity="0.6"/>
-              <path d="M48 14 L34 28" stroke-width="0.4" opacity="0.6"/>
-              <path d="M50 16 L36 30" stroke-width="0.4" opacity="0.6"/>
-              <path d="M52 18 L38 32" stroke-width="0.4" opacity="0.6"/>
-            </svg>
-          </div>
-          <div class="timeline-time">21.30</div>
-          <div class="timeline-desc">Hyldest til<br>albansk kultur</div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-icon" aria-hidden="true">
-            <!-- Music notes / festival -->
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Note 1 -->
               <ellipse cx="18" cy="44" rx="6" ry="4.5" transform="rotate(-15 18 44)" fill="currentColor" fill-opacity="0.15"/>
               <path d="M22 42 L22 18 L46 12 L46 38"/>
               <ellipse cx="42" cy="40" rx="6" ry="4.5" transform="rotate(-15 42 40)" fill="currentColor" fill-opacity="0.15"/>
               <path d="M22 24 L46 18" stroke-width="0.5"/>
-              <!-- Sparkles -->
               <path d="M52 18 L52 24 M49 21 L55 21" stroke-width="0.8" opacity="0.6"/>
               <path d="M10 22 L10 26 M8 24 L12 24" stroke-width="0.8" opacity="0.5"/>
             </svg>
           </div>
-          <div class="timeline-time">22.00</div>
-          <div class="timeline-desc">Festen<br>begynder</div>
+          <div class="timeline-time">21:30</div>
+          <div class="timeline-desc">Fillon<br>festa</div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-icon" aria-hidden="true">
-            <!-- Wedding cake -->
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Top tier -->
               <rect x="26" y="20" width="12" height="10" rx="1"/>
-              <!-- Middle tier -->
               <rect x="20" y="30" width="24" height="11" rx="1"/>
-              <!-- Bottom tier -->
               <rect x="14" y="41" width="36" height="13" rx="1"/>
-              <!-- Plate -->
               <path d="M10 54 L54 54"/>
-              <!-- Topper -->
               <path d="M32 12 L32 20 M30 14 L34 14 M30 16 L34 16" stroke-width="0.9"/>
-              <!-- Decorations -->
               <path d="M20 36 Q24 34 28 36 Q32 34 36 36 Q40 34 44 36" stroke-width="0.7" opacity="0.7"/>
               <path d="M14 47 Q20 45 26 47 Q32 45 38 47 Q44 45 50 47" stroke-width="0.7" opacity="0.7"/>
-              <!-- Berries on top -->
               <circle cx="29" cy="22" r="0.8" fill="currentColor"/>
               <circle cx="35" cy="22" r="0.8" fill="currentColor"/>
             </svg>
           </div>
-          <div class="timeline-time">23.00</div>
-          <div class="timeline-desc">Bryllupskagen<br>skæres</div>
+          <div class="timeline-time">00:30</div>
+          <div class="timeline-desc">Prerja e<br>tortës së dasmës</div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-icon" aria-hidden="true">
-            <!-- Crescent moon with stars -->
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Moon -->
               <path d="M40 14 A18 18 0 1 0 40 50 A14 14 0 1 1 40 14 Z" fill="currentColor" fill-opacity="0.08"/>
-              <!-- Stars -->
               <path d="M14 18 L14 22 M12 20 L16 20" stroke-width="0.9"/>
               <path d="M18 38 L18 42 M16 40 L20 40" stroke-width="0.9"/>
               <path d="M52 22 L52 26 M50 24 L54 24" stroke-width="0.9"/>
               <path d="M10 30 L10 32 M9 31 L11 31" stroke-width="0.7" opacity="0.6"/>
               <path d="M54 44 L54 47 M52.5 45.5 L55.5 45.5" stroke-width="0.7" opacity="0.6"/>
-              <!-- Tiny dots -->
               <circle cx="22" cy="50" r="0.6" fill="currentColor" opacity="0.6"/>
               <circle cx="48" cy="12" r="0.6" fill="currentColor" opacity="0.6"/>
             </svg>
           </div>
-          <div class="timeline-time">00.00</div>
-          <div class="timeline-desc">Aftenen afrundes<br>i Glashuset</div>
+          <div class="timeline-time">01:00</div>
+          <div class="timeline-desc">Përfundimi<br>i mbrëmjes</div>
         </div>
 
       </div>
@@ -1350,143 +746,52 @@
     <div class="vertical-stripes-l"></div>
     <div class="vertical-stripes"></div>
     <div class="section-inner">
-      <span class="smallcaps">Svar venligst</span>
+      <span class="smallcaps">Ju lutemi konfirmoni</span>
       <h2 class="rsvp-title">RSVP</h2>
-      <div class="rsvp-sub">vi glæder os til at høre fra jer</div>
+      <div class="rsvp-sub">me kënaqësi presim konfirmim nga ju</div>
 
       <p class="rsvp-text">
-        Vi håber, I vil fejre med os.<br>
-        Venligst bekræft jeres deltagelse.
+        Shpresojmë ta festoni këtë ditë<br>
+        së bashku me ne.
       </p>
 
-      <div class="rsvp-deadline">Senest 10. juni 2026</div>
-
-      <p class="rsvp-text" style="margin-bottom: 0.4rem;">Oplys venligst:</p>
+      <p class="rsvp-text" style="margin-bottom: 0.4rem;">Ju lutemi na njoftoni për:</p>
       <ul class="rsvp-list">
-        <li>Antal personer</li>
-        <li>Eventuelle allergier eller kosthensyn</li>
+        <li>Numrin e të ftuarve</li>
+        <li>Çdo alergji ose kërkesë të veçantë ushqimore</li>
       </ul>
 
       <div class="rsvp-contact">
-        <a href="mailto:Saschacocodaniels@gmail.dk">Saschacocodaniels@gmail.dk</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- GUIDE INTRO -->
-  <section class="guide-intro section" data-reveal>
-    <div class="section-inner">
-      <span class="smallcaps" style="color: var(--green);">— Gæsteguide —</span>
-      <h2 class="guide-intro-title" style="margin-top: 1rem;">Velkommen<br>til Tirana</h2>
-      <div class="guide-intro-script">en weekend at huske</div>
-      <p>
-        Opholdet på Kazerma er en del af vores invitation
-        og er inkluderet for alle gæster som en del af bryllupsfejringen.
-      </p>
-    </div>
-  </section>
-
-  <!-- TRAVEL -->
-  <section class="guide-block section bg-paper" data-reveal>
-    <div class="section-inner">
-      <span class="smallcaps">Rejse &amp; ankomst</span>
-      <h3 class="guide-h">Sådan finder I frem</h3>
-      <p>
-        Nærmeste lufthavn er <strong>Tirana International Airport (TIA)</strong>.
-        Gæster står selv for transport fra lufthavnen til Kazerma —
-        vi anbefaler taxi eller privat transfer.
-      </p>
-      <div class="info-row">
-        <span class="label">Rejsetid fra TIA</span>
-        <span class="value">35 – 45 min.</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Adresse</span>
-        <span class="value">Kazerma e Cerenit<br>Tirana, Albanien</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ACCOMMODATION -->
-  <section class="guide-block section" data-reveal>
-    <div class="section-inner">
-      <span class="smallcaps">Ophold</span>
-      <h3 class="guide-h">En weekend på Kazerma</h3>
-      <p>
-        Indkvartering fra <strong>fredag 9.10.2026</strong> til <strong>søndag 11.10.2026</strong>
-        er inkluderet for alle gæster som en del af vores invitation.
-      </p>
-      <div class="info-row">
-        <span class="label">Check-in</span>
-        <span class="value">Fredag fra kl. 13.00</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Check-out</span>
-        <span class="value">Søndag fra kl. 11.30</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Morgenmad</span>
-        <span class="value">Kl. 09.00 – 11.00</span>
-      </div>
-
-      <div class="pre-dinner-note">
-        <span class="smallcaps" style="color: var(--green); display:block; text-align:center; margin-bottom: 0.6rem;">Fredag aften</span>
-        <p style="text-align: center; margin-bottom: 0.4rem; font-style: italic; color: var(--green-dark);">
-          Pre-wedding dinner for den danske familie
-        </p>
-        <p style="text-align: center; font-family: 'Playfair Display', serif; font-style: italic; color: var(--green); margin-bottom: 0;">
-          Fredag 9. oktober · kl. 19.00 – 22.00
-        </p>
+        <a href="mailto:Saschacocodaniels@gmail.com">Saschacocodaniels@gmail.com</a>
       </div>
     </div>
   </section>
 
   <!-- DRESSCODE -->
-  <section class="guide-block section bg-paper" data-reveal>
-    <div class="section-inner" style="text-align:center;">
-      <span class="smallcaps">Dresscode</span>
-      <h3 class="guide-h" style="font-style: normal; font-weight: 700; font-size: clamp(2rem, 5.5vw, 2.8rem); margin-top: 0.4rem;">Elegant Evening Wear</h3>
-      <p style="text-align: center; font-style: italic; max-width: 420px; margin: 0 auto;">
-        En aften under glas og stjerner — klæd jer i jeres fineste.
-      </p>
-    </div>
-  </section>
-
-  <!-- WEATHER -->
-  <section class="guide-block section" data-reveal>
+  <section class="dresscode-block section" data-reveal>
     <div class="section-inner">
-      <span class="smallcaps">Vejr</span>
-      <h3 class="guide-h">Oktober i Tirana</h3>
+      <span class="smallcaps">Kodi i veshjes</span>
+      <h3>Veshje elegante mbrëmjeje</h3>
       <p>
-        I starten af oktober er vejret i Tirana lunt om dagen
-        og mildt til køligt om aftenen.
+        Një mbrëmje nën xham dhe nën yje —<br>
+        vishuni me elegancën tuaj më të bukur.
       </p>
-      <div class="info-row">
-        <span class="label">Dag</span>
-        <span class="value">20 – 23°C</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Aften</span>
-        <span class="value">13 – 17°C</span>
-      </div>
     </div>
   </section>
 
-  <!-- PLACE & EXPERIENCE -->
-  <section class="guide-block section bg-paper" data-reveal>
+  <!-- ABOUT KAZERMA -->
+  <section class="about-block section" data-reveal>
     <div class="section-inner">
-      <span class="smallcaps">Sted &amp; oplevelse</span>
-      <h3 class="guide-h">Udforsk Kazerma</h3>
-      <p style="text-align: center;">
-        Kazerma er en tidligere militærkaserne, nænsomt transformeret til et sted,
-        hvor historie og natur smelter sammen.
+      <span class="smallcaps">Rreth Kazermës</span>
+      <h3 class="about-h">Historia dhe natyra bashkohen</h3>
+      <p>
+        Kazerma është një ish-repart ushtarak, i transformuar me kujdes
+        në një vend ku historia dhe natyra bashkohen.
       </p>
-      <p style="text-align: center; margin-top: 1rem;">
-        Her mødes rå arkitektur og åbne landskaber med egne råvarer
-        og vinproduktion, som danner rammen om oplevelsen.
-      </p>
-      <p style="text-align: center; font-style: italic; margin-top: 1.4rem; color: var(--green);">
-        Området inviterer til at gå på opdagelse i eget tempo.
+      <p>
+        Këtu, arkitektura e papërpunuar dhe peizazhet e hapura takohen
+        me prodhimet e fermës dhe prodhimin e verës, duke krijuar
+        sfondin e kësaj përvoje.
       </p>
     </div>
   </section>
@@ -1494,7 +799,7 @@
   <!-- CLOSING -->
   <section class="closing section" data-reveal>
     <div class="section-inner">
-      <div class="closing-script">Med kærlighed</div>
+      <div class="closing-script">Me dashuri</div>
       <div class="closing-names">Sascha &amp; Klodian</div>
       <div class="closing-rule"></div>
       <div style="margin-top: 1.4rem; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream-warm); opacity: 0.7;">
@@ -1506,13 +811,13 @@
 </main>
 
 <script>
-  /* ============ BACKGROUND MUSIC ============ */
+  /* BACKGROUND MUSIC */
   const audio = document.getElementById('bgMusic');
   const muteBtn = document.getElementById('muteBtn');
 
-  const SONG_START_AT = 6;          // start playback 6 seconds into the song
-  const TARGET_VOLUME = 0.55;       // final volume (0–1)
-  const FADE_DURATION_MS = 3200;    // fade-in duration
+  const SONG_START_AT = 6;
+  const TARGET_VOLUME = 0.55;
+  const FADE_DURATION_MS = 3200;
 
   let userMuted = false;
 
@@ -1521,7 +826,6 @@
     try {
       audio.currentTime = SONG_START_AT;
     } catch (e) {
-      // some browsers throw if metadata isn't loaded yet — try again on canplay
       audio.addEventListener('canplay', () => {
         try { audio.currentTime = SONG_START_AT; } catch (_) {}
       }, { once: true });
@@ -1536,15 +840,12 @@
           if (userMuted) return;
           const elapsed = now - start;
           const progress = Math.min(elapsed / FADE_DURATION_MS, 1);
-          // ease-out
           const eased = 1 - Math.pow(1 - progress, 2);
           audio.volume = eased * TARGET_VOLUME;
           if (progress < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
-      }).catch(() => {
-        // autoplay blocked — show mute button anyway so user can tap it
-      });
+      }).catch(() => {});
     }
   }
 
@@ -1552,10 +853,10 @@
     userMuted = !userMuted;
     audio.muted = userMuted;
     muteBtn.classList.toggle('is-muted', userMuted);
-    muteBtn.setAttribute('aria-label', userMuted ? 'Slå lyd til' : 'Slå lyd fra');
+    muteBtn.setAttribute('aria-label', userMuted ? 'Aktivo zërin' : 'Çaktivizo zërin');
   });
 
-  /* ============ CURTAIN OPEN ============ */
+  /* CURTAIN OPEN */
   const stage = document.getElementById('curtainStage');
   const body = document.body;
 
@@ -1564,7 +865,6 @@
     stage.classList.add('open');
     body.classList.remove('curtain-closed');
     fadeInMusic();
-    // show mute button after a short beat so it doesn't appear during animation
     setTimeout(() => muteBtn.classList.add('visible'), 800);
     setTimeout(() => {
       stage.style.display = 'none';
@@ -1580,7 +880,7 @@
     }
   });
 
-  /* ============ SCROLL REVEAL ============ */
+  /* SCROLL REVEAL */
   const sections = document.querySelectorAll('[data-reveal]');
   function revealVisible() {
     const trigger = window.innerHeight * 0.85;
@@ -1600,7 +900,7 @@
     window.addEventListener('scroll', revealVisible, { passive: true });
   }
 
-  /* ============ COUNTDOWN ============ */
+  /* COUNTDOWN */
   const target = new Date('2026-10-10T17:00:00+02:00').getTime();
   const $d = document.getElementById('cd-days');
   const $h = document.getElementById('cd-hours');
